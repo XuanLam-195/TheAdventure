@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
     private String roomName;
     private String roomDescription;
@@ -8,21 +11,27 @@ public class Room {
     private Room goEast;
     private Room goSouth;
 
+    private List<Item> items = new ArrayList<>();
 
-    public Room (String roomName, String roomDescription) {
+    public List<Item> getItems() {
+        return items;
+    }
+    public void setItems(List<Item> items){
+        this.items = items;
+    }
+
+    public Room(String roomName, String roomDescription) {
         this.roomName = roomName;
         this.roomDescription = roomDescription;
-
     }
-    public void setConnections(Room goNorth, Room goWest, Room goEast, Room goSouth){
+
+    public void setConnections(Room goNorth, Room goWest, Room goEast, Room goSouth) {
         this.goNorth = goNorth;
         this.goWest = goWest;
         this.goEast = goEast;
-        this.goSouth= goSouth;
+        this.goSouth = goSouth;
     }
-
     public String getRoomName() {
-
         return roomName;
     }
 
