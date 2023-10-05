@@ -36,6 +36,7 @@ public class CreateMap {
         room8.setConnections(room5, room7, room9, null);
         room9.setConnections(room6, room8, null, null);
         CreateItems();
+        Food();
     }
 
     public void CreateItems() {
@@ -58,6 +59,27 @@ public class CreateMap {
         room7.getItems().add(spyglass);
         room8.getItems().add(map);
         room9.getItems().add(mysteriousKey);
+
+    }
+    public void Food(){
+        Food apple = new Food("Apple", "A fresh red apple!", 70);
+        Food bread = new Food("Bread", "A loaf og bread!", 45);
+        Food beef = new Food("Beef", "A half kilo of fresh beef!", -100);
+        Food eggs = new Food("Eggs", "A dozen og egg!", 120);
+        Food pasta = new Food("Pasta", "A delicious dish od pasta!", -200);
+        Food orange  = new Food("Orange", "A huge fresh orange!", 80);
+        Food chickenNuggets  = new Food("Chiken nuggets", "A huge pack of chicken nuggets!", -170);
+        Food pizza = new Food("Pizza", "A huge piece of pizza!", 40);
+        Food rice = new Food("Rice", "A huge bow of rice!", 20);
+        room2.getItems().add(apple);
+        room2.getItems().add(bread);
+        room3.getItems().add(beef);
+        room4.getItems().add(eggs);
+        room5.getItems().add(pasta);
+        room6.getItems().add(orange);
+        room7.getItems().add(chickenNuggets);
+        room8.getItems().add(pizza);
+        room9.getItems().add(rice);
 
     }
 }

@@ -11,9 +11,16 @@ public class Player {
     private Room goEast;
     private Room goSouth;
     private Room currentRoom;
-    private List<Item> items = new ArrayList();
+    private int health = 100;
 
-    public void takeItem( Item item){
+    private List<Item> items = new ArrayList();
+    private List<Food> inventory= new ArrayList<>();
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void takeItem(Item item){
         items.add(item);
         item.setPlayer(this);
         item.setRoom(null);
@@ -23,6 +30,14 @@ public class Player {
         items.add(item);
         item.setPlayer(null);
         item.setRoom(room);
+    }
+    public void eatFood(Food food, Room room){
+        health = health + food.getHealthBonus();
+        room.getItems().remove(food);
+    }
+    public void eatFood(Food food){
+        health = health + food.getHealthBonus();
+        items.remove(food);
     }
     public List<Item> getItem(){
         return items;
@@ -55,19 +70,6 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getPoint() {
-        return point;
-    }
-
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
-    public void getHeading() {
-
-    }
-
     public Room getGoNorth() {
         if (currentRoom.getGoNorth() != null) {
             currentRoom = currentRoom.getGoNorth();

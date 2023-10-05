@@ -15,9 +15,11 @@ public class UserInterface {
         System.out.println("You are starting at " + adventure.PlayCurrentRoom().getRoomDescription());
         System.out.print("Which direction would you like to go: n/w/e/s \n");
 
+
         String input;
         boolean finish = true;
         while (finish) {
+           // System.out.println("awaiting for your command: ");
             input = sc.nextLine();
             if (input.startsWith("pick")) {
                 String[] arrayInput = input.split(" ");
@@ -37,6 +39,19 @@ public class UserInterface {
                 } else {
                     System.out.println("There is an item to pick");
                 }
+            }else if(input.startsWith("eat")){
+                String[] arrayInput = input.split(" ");
+                String name = arrayInput[1];
+                EatResult eatResult = adventure.eatFood(name);
+                if(eatResult == EatResult.EAT_HEALTHY_FOOD){
+                    System.out.println("You will get your health restore");
+                }else if(eatResult == EatResult.EAT_POISON_FOOD){
+                    System.out.println("You will get damage for your health. Your blood would be lost.");
+                }else{
+                    System.out.println("The food cannot be found");
+                }
+
+
             } else {
                 switch (input) {
                     case "go north", "n" -> {
@@ -59,6 +74,9 @@ public class UserInterface {
                     }
                     case "inventory", "i" -> {
                         adventure.printAdventureInventory();
+                    }
+                    case "health", "h" -> {
+                        System.out.println("Player has number of blood: " + adventure.getPlayerHealth());
                     }
                     case "exit" -> {
                         System.out.println("Quit the game!");
