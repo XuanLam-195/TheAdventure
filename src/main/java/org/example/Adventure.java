@@ -4,15 +4,10 @@ import java.util.List;
 
 public class Adventure {
     private Player player;
-    List<Player> players;
-    List<Room> room;
-    List<Item> items;
-
-
     public Adventure() {
         CreateMap createMap = new CreateMap();
         createMap.Create();
-        this.player = new Player("John", 500, createMap.getRoom1());
+        this.player = new Player("John",  createMap.getRoom1());
     }
 
     public Item findAndPick(String name) {
@@ -45,6 +40,44 @@ public class Adventure {
         }
         return itemToDrop;
     }
+    public EatResult eatFood(String name) {
+        Food food = null;
+        Room room = player.getCurrentRoom();
+        for (Item foodInRoom : room.getItems()) {
+            if (foodInRoom.getName().equals(name)) {
+                food = (Food) foodInRoom;
+                break;
+            }
+        }
+        if (food != null) {
+            player.eatFood(food, room);
+            if (food.getHealthBonus() < 0) {
+                return EatResult.EAT_POISON_FOOD;
+            } else {
+                return EatResult.EAT_HEALTHY_FOOD;
+            }
+        }
+        for (Item foodInInventory : player.getItem()) {
+            if (foodInInventory.getName().equals(name)) {
+                food = (Food) foodInInventory;
+                break;
+            }
+        }
+        if (food != null) {
+            player.eatFood(food);
+            if (food.getHealthBonus() < 0) {
+                return EatResult.EAT_POISON_FOOD;
+            } else {
+                return EatResult.EAT_HEALTHY_FOOD;
+            }
+        }else{
+            return  EatResult.FOOD_NOT_FOUND;
+        }
+    }
+        public int getPlayerHealth(){
+            return player.getHealth();
+        }
+
 
     public Room goNorth() {
         return player.getGoNorth();

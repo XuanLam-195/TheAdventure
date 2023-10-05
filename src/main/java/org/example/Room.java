@@ -34,14 +34,11 @@ public class Room {
     public String getRoomName() {
         return roomName;
     }
-
     public String getRoomDescription() {
-
         return roomDescription;
     }
 
     public Room getGoNorth() {
-
         return goNorth;
     }
 
@@ -52,7 +49,6 @@ public class Room {
     public void setGoWest(Room goWest) {
         this.goWest = goWest;
     }
-
     public void setGoEast(Room goEast) {
         this.goEast = goEast;
     }
@@ -60,16 +56,12 @@ public class Room {
     public void setGoSouth(Room goSouth) {
         this.goSouth = goSouth;
     }
-
     public Room getGoWest() {
-
         return goWest;
     }
-
     public Room getGoEast() {
         return goEast;
     }
-
     public Room getGoSouth() {
         return goSouth;
     }
