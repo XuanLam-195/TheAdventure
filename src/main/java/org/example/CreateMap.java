@@ -43,20 +43,11 @@ public class CreateMap {
     }
 
     public void CreateItems() {
-        Item sword = new Item("Sword", "A basic melee weapon.");
-        Item bow = new Item("Bow", "Ranged weapon with arrows.");
-        Item dagger = new Item("Dagger", "A concealed, lightweight weapon.");
-        Item crossbow = new Item("Crossbow", "A powerful ranged weapon.");
         Item gemstone = new Item("Gemstone", "A valuable jewel");
         Item torch = new Item("Torch", "Provides light in dark areas.");
         Item spyglass = new Item("Spyglass", " Allows the player to see distant objects clearly.");
         Item map = new Item("Map", "Reveals the player's current location.");
         Item mysteriousKey = new Item("Mysterious Key", "Opens a hidden door or chest.");
-
-        room1.getItems().add(sword);
-        room2.getItems().add(bow);
-        room3.getItems().add(dagger);
-        room4.getItems().add(crossbow);
         room5.getItems().add(gemstone);
         room6.getItems().add(torch);
         room7.getItems().add(spyglass);

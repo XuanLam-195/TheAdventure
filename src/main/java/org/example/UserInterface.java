@@ -17,8 +17,8 @@ public class UserInterface {
 
 
         String input;
-        boolean finish = true;
-        while (finish) {
+        boolean finish = false;
+        while (!finish) {
             System.out.println("Awaiting for your command: ");
             input = sc.nextLine();
             if (input.startsWith("pick")) {
@@ -37,7 +37,7 @@ public class UserInterface {
                 if (item == null) {
                     System.out.println("There is no item to drop");
                 } else {
-                    System.out.println("There is an item to pick");
+                    System.out.println("The item has been dropped");
                 }
             } else if (input.startsWith("eat")) {
                 String[] arrayInput = input.split(" ", 2);
@@ -67,7 +67,10 @@ public class UserInterface {
 
             } else if (input.startsWith("attack")) {
                 String[] arrayInput = input.split(" ", 2);
-                String name = arrayInput[1];
+                String name = "";
+                if(arrayInput.length >= 2 ){
+                     name = arrayInput[1];
+                }
                 AttackResult attackResult = adventure.attack(name);
                 if (attackResult == AttackResult.HAS_NO_WEAPON) {
                     System.out.println("You have no weapon to attack your enemy");
@@ -80,9 +83,10 @@ public class UserInterface {
                 } else if (attackResult == AttackResult.ATTACK_AND_ENEMY_DIED) {
                     System.out.println("The enemy died by your attacking");
                 } else if (attackResult == AttackResult.ATTACK_AND_ENEMY_ALIVE_COUNTER_ATTACK) {
-                    System.out.println("You get counter attack by the enemy and you would be lost your health and died");
+                    System.out.println("You attack an enemy and get counter attack and you lost your health");
                 } else {
                     System.out.println("You died by the enemy's attacking");
+                    finish = true;
                 }
             } else {
 
@@ -99,6 +103,7 @@ public class UserInterface {
                     case "go south", "s" -> {
                         System.out.println(adventure.goSouth());
                     }
+
                     case "look" -> {
                         System.out.println(adventure.PlayCurrentRoom());
                         System.out.println("You find yourself in a dimly lit chamber." +
@@ -106,7 +111,21 @@ public class UserInterface {
                                 " A flickering torch casts eerie shadows.");
                     }
                     case "help" -> {
-                        System.out.println("This is a room in the game, you can interact with items here!");
+                        System.out.println("The program has these commands:"+ "\n" +
+                                "Press n to go to the North" + "\n" +
+                                "Press w to go to the West" + "\n" +
+                                "Press e to go to the East"+ "\n" +
+                                "Press s to go to the South" + "\n" +
+                                "Press p <Item Name> to pick the Item" + "\n" +
+                                "Press d <Item Name> to drop the Item" + "\n" +
+                                "Press e <Food Name> to eat the food"+ "\n" +
+                                "Press equip <Weapon Name> to equip the Weapon" + "\n" +
+                                "Press attack <Enemy Name> to attack the Enemy"+ "\n" +
+                                "Press i to view your Inventory" + "\n" +
+                                "Press look to repeat the description of room you are in" + "\n" +
+                                "Press h to show your current health" + "\n" +
+                                "Press ex to exit the game.");
+
                     }
                     case "inventory", "i" -> {
                         adventure.printAdventureInventory();
@@ -114,9 +133,9 @@ public class UserInterface {
                     case "health", "h" -> {
                         System.out.println("Player has number of blood: " + adventure.getPlayerHealth());
                     }
-                    case "exit" -> {
+                    case "exit", "ex" -> {
                         System.out.println("Quit the game!");
-                        finish = false;
+                        finish = true;
                     }
                 }
             }

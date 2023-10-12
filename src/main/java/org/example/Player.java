@@ -50,7 +50,7 @@ public class Player {
     }
 
     public void dropItem(Item item, Room room) {
-        inventory.add(item);
+        inventory.remove(item);
         item.setPlayer(null);
         item.setRoom(room);
     }

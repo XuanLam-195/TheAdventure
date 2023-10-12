@@ -119,25 +119,25 @@ public class AdventureControl {
                             break;
                         }
                     }
-                    if (enemy == null) {
-                        return AttackResult.CANT_FOUND_ENEMY_WITH_NAME;
+                }
+                if (enemy == null) {
+                    return AttackResult.CANT_FOUND_ENEMY_WITH_NAME;
+                } else {
+                    Weapon weapon = player.getWeapon();
+                    weapon.attack();
+                    enemy.setHealthLevel(enemy.getHealthLevel() - weapon.getDamage());
+                    if (!enemy.isAlive()) {
+                        room.getItems().add(enemy.getWeapon());
+                        room.getEnemies().remove(enemy);
+                        return AttackResult.ATTACK_AND_ENEMY_DIED;
                     } else {
-                        Weapon weapon = player.getWeapon();
-                        weapon.attack();
-                        enemy.setHealthLevel(enemy.getHealthLevel() - weapon.getDamage());
-                        if (!enemy.isAlive()) {
-                            room.getItems().add(enemy.getWeapon());
-                            room.getEnemies().remove(enemy);
-                            return AttackResult.ATTACK_AND_ENEMY_DIED;
+                        Weapon enemyWeapon = enemy.getWeapon();
+                        enemyWeapon.attack();
+                        player.setHealth(player.getHealth() - enemyWeapon.getDamage());
+                        if (!player.isAlive()) {
+                            return AttackResult.ENEMY_COUNTER_ATTACK_AND_PLAYER_DIED;
                         } else {
-                            Weapon enemyWeapon = enemy.getWeapon();
-                            enemyWeapon.attack();
-                            player.setHealth(player.getHealth() - enemyWeapon.getDamage());
-                            if (!player.isAlive()) {
-                                return AttackResult.ENEMY_COUNTER_ATTACK_AND_PLAYER_DIED;
-                            } else {
-                                return AttackResult.ATTACK_AND_ENEMY_ALIVE_COUNTER_ATTACK;
-                            }
+                            return AttackResult.ATTACK_AND_ENEMY_ALIVE_COUNTER_ATTACK;
                         }
                     }
                 }
@@ -145,7 +145,6 @@ public class AdventureControl {
             }
 
         }
-        return AttackResult.HAS_NO_WEAPON;
     }
 
     public int getPlayerHealth() {
