@@ -11,10 +11,16 @@ public class Room {
     private Room goEast;
     private Room goSouth;
 
+
     private List<Item> items = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
+
 
     public List<Item> getItems() {
         return items;
+    }
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
     public void setItems(List<Item> items){
         this.items = items;

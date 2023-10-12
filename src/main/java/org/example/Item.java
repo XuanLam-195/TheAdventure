@@ -4,7 +4,7 @@ public class Item {
     String name;
     String description;
     private Player player;
-
+    private Room room;
 
     public String getName() {
         return name;
@@ -37,8 +37,6 @@ public class Item {
     public void setRoom(Room room) {
         this.room = room;
     }
-
-    private Room room;
 
     public Item(String name, String description) {
         this.name = name;

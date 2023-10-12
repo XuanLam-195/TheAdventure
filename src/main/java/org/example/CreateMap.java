@@ -11,6 +11,7 @@ public class CreateMap {
     private Room room8;
     private Room room9;
 
+
     public Room getRoom1() {
         return room1;
     }
@@ -37,6 +38,8 @@ public class CreateMap {
         room9.setConnections(room6, room8, null, null);
         CreateItems();
         Food();
+        Enemy();
+        Weapon();
     }
 
     public void CreateItems() {
@@ -61,16 +64,17 @@ public class CreateMap {
         room9.getItems().add(mysteriousKey);
 
     }
-    public void Food(){
+
+    public void Food() {
         Food apple = new Food("Apple", "A fresh red apple!", 70);
         Food bread = new Food("Bread", "A loaf og bread!", 45);
         Food beef = new Food("Beef", "A half kilo of fresh beef!", -100);
         Food eggs = new Food("Eggs", "A dozen og egg!", 120);
         Food pasta = new Food("Pasta", "A delicious dish od pasta!", -200);
-        Food orange  = new Food("Orange", "A huge fresh orange!", 80);
-        Food chickenNuggets  = new Food("Chiken nuggets", "A huge pack of chicken nuggets!", -170);
+        Food orange = new Food("Orange", "A huge fresh orange!", 80);
+        Food chickenNuggets = new Food("Chiken nuggets", "A huge pack of chicken nuggets!", -170);
         Food pizza = new Food("Pizza", "A huge piece of pizza!", 40);
-        Food rice = new Food("Rice", "A huge bow of rice!", 20);
+        Food rice = new Food("Rice", "A huge bow of rice!", -20);
         room2.getItems().add(apple);
         room2.getItems().add(bread);
         room3.getItems().add(beef);
@@ -81,5 +85,47 @@ public class CreateMap {
         room8.getItems().add(pizza);
         room9.getItems().add(rice);
 
+    }
+
+    public void Weapon() {
+        Weapon sword = new MeleeWeapon("Sword", "A sharp blade", 30);
+        Weapon bow = new RangedWeapon("Bow", "A long-range weapon ", 3, 40);
+        Weapon magicWand = new RangedWeapon("Magic Wand", "A wand that cats speels", 2, 20);
+        Weapon revolver = new RangedWeapon("Revolver", "A fast dangerous weapon", 2, 35);
+        Weapon grenade = new RangedWeapon("Grenade", "A dangerous explosive weapon", 3, 60);
+        Weapon knife = new MeleeWeapon("Knife", "A sharp dangerous weapon", 25);
+        Weapon ax = new MeleeWeapon("Ax", "A strong damage weapon", 30);
+        Weapon spear = new MeleeWeapon("Spear", "A long sharp weapon", 45);
+        Weapon club = new RangedWeapon("Club", "A strong heavy metal weapon", 3, 55);
+        room2.getItems().add(sword);
+        room2.getItems().add(bow);
+        room3.getItems().add(magicWand);
+        room4.getItems().add(revolver);
+        room5.getItems().add(grenade);
+        room6.getItems().add(knife);
+        room7.getItems().add(ax);
+        room8.getItems().add(spear);
+        room9.getItems().add(club);
+    }
+
+    public void Enemy() {
+        Weapon sword = new MeleeWeapon("Sword", "A sharp blade", 30);
+        Weapon bow = new RangedWeapon("Bow", "A long-range weapon ", 3, 40);
+        Weapon magicWand = new RangedWeapon("Magic Wand", "A wand that cats speels", 2, 20);
+        Weapon revolver = new RangedWeapon("Revolver", "A fast dangerous weapon", 2, 35);
+        Weapon grenade = new RangedWeapon("Grenade", "A dangerous explosive weapon", 3, 60);
+        Weapon knife = new MeleeWeapon("Knife", "A sharp dangerous weapon", 25);
+        Enemy dragon = new Enemy("Dragon", "A massive, winged serpent with scales that shimmer like molten lava. It spews scorching flames from its jaws.", 100, sword);
+        Enemy goblin = new Enemy("Goblin", "A mischievous and cunning creature that lurks in the shadows. Its beady eyes gleam with malevolence, and it wields a jagged blade.", 20, bow);
+        Enemy skeleton = new Enemy("Skeleton", "A skeletal warrior that refuses to rest in peace. Its bones rattle ominously as it wields a rusty sword with deadly precision.", 40, magicWand);
+        Enemy witch = new Enemy("Witch", "A haggard and wretched sorceress who commands the forces of nature. She resides in a murky swamp, surrounded by eerie wisps of mist.", 70, revolver);
+        Enemy guardian = new Enemy("Guardian", " A colossal ice golem created to protect the frozen citadel. Its icy fists can freeze a foe in an instant.", 50, grenade);
+        Enemy beast = new Enemy("Beast", " A creature born from the depths of the earth's fiery heart. Molten lava flows through its veins, and it leaves a trail of searing destruction.", 60, knife);
+        room2.getEnemies().add(goblin);
+        room3.getEnemies().add(skeleton);
+        room3.getEnemies().add(guardian);
+        room6.getEnemies().add(witch);
+        room8.getEnemies().add(beast);
+        room5.getEnemies().add(dragon);
     }
 }

@@ -2,7 +2,7 @@ package org.example;
 
 public class Food extends Item{
 
-      int healthBonus;
+      private int healthBonus;
 
     public int getHealthBonus() {
         return healthBonus;
